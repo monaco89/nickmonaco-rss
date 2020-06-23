@@ -23,6 +23,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
     console.log("Network error", networkError);
   }
 });
+console.log(process.env.REACT_APP_SERVER_URI);
 
 const link = ApolloLink.from([
   new RetryLink(),
@@ -38,10 +39,9 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <App />,
-  // <ApolloProvider client={client}>
-  //   <App />
-  // </ApolloProvider>,
+  <ApolloProvider client={client}>
+    <App />
+  </ApolloProvider>,
   document.getElementById("root")
 );
 

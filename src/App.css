@@ -1,5 +1,6 @@
 h1 {
   font-size: 2em;
+  line-height: 50px;
 }
 
 h2 {
@@ -15,4 +16,12 @@ h3 {
 body {
   padding: 15px;
   background-color: #f7f7f7;
+}
+
+.addFeedIcon {
+  cursor: pointer;
+}
+
+.addFeedIcon:hover {
+  color: red;
 }
