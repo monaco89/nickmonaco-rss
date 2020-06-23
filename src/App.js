@@ -1,26 +1,39 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  Sidebar,
+  FlexboxGrid,
+  Col,
+} from "rsuite";
+import FeedsList from "./components/FeedsList";
+import ArticleList from "./components/ArticleList";
+// import { BrowserRouter, Route, Switch } from 'react-router-dom';
+// import * as routes from './constants/routes';
 
-function App() {
+import "rsuite/dist/styles/rsuite-default.css";
+import "./App.css";
+
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Container>
+      {/* <Header>Header</Header> */}
+      <Content>
+        <FlexboxGrid justify="space-around">
+          <FlexboxGrid.Item componentClass={Col} colspan={24} md={10} xs={24}>
+            <h1>Nick Monaco's RSS Feed</h1>
+            <FeedsList />
+          </FlexboxGrid.Item>
+          <FlexboxGrid.Item componentClass={Col} colspan={24} md={14} xs={24}>
+            <ArticleList />
+          </FlexboxGrid.Item>
+        </FlexboxGrid>
+      </Content>
+      {/* <Footer>Footer</Footer> */}
+    </Container>
   );
-}
+};
 
 export default App;
