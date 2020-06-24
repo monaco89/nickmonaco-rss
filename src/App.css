@@ -25,3 +25,17 @@ body {
 .addFeedIcon:hover {
   color: red;
 }
+
+.rs-avatar {
+  margin-top: -10px;
+}
+
+.rs-content {
+  min-height: 500px;
+}
+
+.rs-footer {
+  background-color: white;
+  padding: 40px;
+  border-radius: 6px;
+}

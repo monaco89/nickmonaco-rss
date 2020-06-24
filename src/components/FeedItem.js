@@ -25,7 +25,7 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl }) => (
       {/*icon*/}
       <FlexboxGrid.Item colspan={2} style={styleCenter}>
         <Icon
-          icon={item.icon || "image"}
+          icon={item.icon || item.name.toLowerCase() || "image"}
           style={{
             color: "darkgrey",
             fontSize: "1.5em",

@@ -1,11 +1,12 @@
 import React, { useState } from "react";
-import { List, FlexboxGrid, Icon } from "rsuite";
+import { List, FlexboxGrid, Icon, IconButton } from "rsuite";
 import { useQuery } from "@apollo/client";
 import FEEDS_QUERY from "../graphql/queries/Feeds";
 import FeedItem from "./FeedItem";
 import AddFormModal from "./AddFeedFormModal";
 
 const FeedsList = ({ rssUrl, setRssUrl }) => {
+  const [editable, toggleEdit] = useState(false);
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
   const { loading, data, error } = useQuery(FEEDS_QUERY);
 
@@ -30,9 +31,9 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             </FlexboxGrid.Item>
             <FlexboxGrid.Item colspan={1}>
               <Icon
-                icon="plus"
+                icon="edit"
                 className="addFeedIcon"
-                onClick={() => toggleAddFeedForm(true)}
+                onClick={() => toggleEdit(!editable)}
               />
             </FlexboxGrid.Item>
           </FlexboxGrid>
@@ -46,6 +47,17 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             key={item._id}
           />
         ))}
+        {editable && (
+          <List.Item>
+            <IconButton
+              icon={<Icon icon="plus" />}
+              placement="left"
+              onClick={() => toggleAddFeedForm(true)}
+            >
+              Add Feed
+            </IconButton>
+          </List.Item>
+        )}
       </List>
     </>
   );

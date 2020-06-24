@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import RSSParser from "rss-parser";
 import ArticleListStyles from "./ArticleList.module.css";
+import { Icon } from "rsuite";
+import moment from "moment";
 
-const ArticleList = ({ feedTitle = "ESPN", rssUrl }) => {
+const ArticleList = ({ rssUrl }) => {
   const [feed, setFeed] = useState({ title: "", items: [] });
 
   const rssData = async () => {
@@ -25,13 +27,17 @@ const ArticleList = ({ feedTitle = "ESPN", rssUrl }) => {
 
   return (
     <div>
-      <h2>{feedTitle} Feed</h2>
-      <p>{feed.title}</p>
+      <h2>{feed.title}</h2>
       {feed.items.slice(0, 10).map((item, i) => (
         <div key={i} className={ArticleListStyles.item}>
-          <h1>{item.title}</h1>
+          <a href={item.link} target="_blank">
+            <h1>{item.title}</h1>
+          </a>
           <p>{item.content}</p>
-          <p>{item.pubDate}</p>
+          <p>
+            <Icon icon="clock-o" style={{ color: "#2296F3" }} />{" "}
+            {moment(item.pubDate).calendar()}
+          </p>
           <hr />
         </div>
       ))}
