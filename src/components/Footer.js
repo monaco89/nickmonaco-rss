@@ -5,19 +5,23 @@ const Footer = () => (
   <Row>
     <Col md={4} xs={24}>
       <Nav vertical>
-        <Nav.Item>
-          <a href="https://www.nickmonaco.me" target="_blank">
-            NickMonaco.me
-          </a>
+        <Nav.Item href="https://www.nickmonaco.me" target="_blank">
+          NickMonaco.me
         </Nav.Item>
-        <Nav.Item icon={<Icon icon="github-alt" />}>
-          <a href="">View on Github</a>
+        <Nav.Item
+          href="https://github.com/monaco89/nickmonaco-rss"
+          icon={<Icon icon="github-alt" />}
+          target="_blank"
+        >
+          View on Github
         </Nav.Item>
-        <Nav.Item icon={<Icon icon="github-alt" />}>
-          <a href="">
-            <Icon name="github" />
-            View API on Github
-          </a>
+        <Nav.Item
+          href="https://github.com/monaco89/nickmonaco-rss-api"
+          icon={<Icon icon="github-alt" />}
+          target="_blank"
+        >
+          <Icon name="github" />
+          View API on Github
         </Nav.Item>
       </Nav>
     </Col>

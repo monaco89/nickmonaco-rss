@@ -1,40 +1,37 @@
 import React, { useState } from "react";
-import { List, FlexboxGrid, Icon, IconButton } from "rsuite";
+import { List, FlexboxGrid } from "rsuite";
 import { useQuery } from "@apollo/client";
 import FEEDS_QUERY from "../graphql/queries/Feeds";
 import FeedItem from "./FeedItem";
 import AddFormModal from "./AddFeedFormModal";
+import TabMenu from "./TabMenu";
+import Loading from "./Loading";
 
 const FeedsList = ({ rssUrl, setRssUrl }) => {
-  const [editable, toggleEdit] = useState(false);
+  const [activeTab, setActiveTab] = useState("articles");
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
   const { loading, data, error } = useQuery(FEEDS_QUERY);
 
-  if (loading) return "loading";
+  if (loading) return <Loading />;
   if (error) return `Error ${error.message}`;
 
   console.log("feeds", data);
 
   return (
     <>
+      <TabMenu activeTab={activeTab} setActiveTab={setActiveTab} />
+      <br />
       {toggleAddFeedForm && (
         <AddFormModal
           showAddFeedForm={showAddFeedForm}
           toggleAddFeedForm={toggleAddFeedForm}
         />
       )}
-      <List bordered hover>
+      <List bordered hover className="feedlist">
         <List.Item>
           <FlexboxGrid>
-            <FlexboxGrid.Item colspan={23}>
-              <h3>Feeds</h3>
-            </FlexboxGrid.Item>
-            <FlexboxGrid.Item colspan={1}>
-              <Icon
-                icon="edit"
-                className="addFeedIcon"
-                onClick={() => toggleEdit(!editable)}
-              />
+            <FlexboxGrid.Item colspan={24}>
+              <h2>Feeds</h2>
             </FlexboxGrid.Item>
           </FlexboxGrid>
         </List.Item>
@@ -45,17 +42,15 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             rssUrl={rssUrl}
             setRssUrl={setRssUrl}
             key={item._id}
+            activeTab={activeTab}
           />
         ))}
-        {editable && (
-          <List.Item>
-            <IconButton
-              icon={<Icon icon="plus" />}
-              placement="left"
-              onClick={() => toggleAddFeedForm(true)}
-            >
-              Add Feed
-            </IconButton>
+        {activeTab === "edit" && (
+          <List.Item
+            onClick={() => toggleAddFeedForm(true)}
+            className="addFeedButton"
+          >
+            Add Feed
           </List.Item>
         )}
       </List>

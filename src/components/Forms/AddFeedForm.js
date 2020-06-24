@@ -70,58 +70,55 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
         touched,
         setFieldValue,
       }) => (
-        console.log(values),
-        (
-          <Form onSubmit={handleSubmit} fluid>
-            <p className="error">{status}</p>
-            <FormGroup>
-              <ControlLabel>Name</ControlLabel>
-              <Input
-                name="name"
-                onChange={(value) => setFieldValue("name", value)}
-                onBlur={handleBlur}
-                // errorMessage={touched.name && errors.name}
-              />
-              <HelpBlock>Required</HelpBlock>
-            </FormGroup>
-            <FormGroup>
-              <ControlLabel>RSS URL</ControlLabel>
-              <Input
-                name="rss"
-                onChange={(value) => setFieldValue("rss", value)}
-                onBlur={handleBlur}
-                // errorMessage={touched.rss && errors.rss}
-              />
-              <HelpBlock>Required</HelpBlock>
-            </FormGroup>
+        <Form onSubmit={handleSubmit} fluid>
+          <p className="error">{status}</p>
+          <FormGroup>
+            <ControlLabel>Name</ControlLabel>
+            <Input
+              name="name"
+              onChange={(value) => setFieldValue("name", value)}
+              onBlur={handleBlur}
+              // errorMessage={touched.name && errors.name}
+            />
+            <HelpBlock>Required</HelpBlock>
+          </FormGroup>
+          <FormGroup>
+            <ControlLabel>RSS URL</ControlLabel>
+            <Input
+              name="rss"
+              onChange={(value) => setFieldValue("rss", value)}
+              onBlur={handleBlur}
+              // errorMessage={touched.rss && errors.rss}
+            />
+            <HelpBlock>Required</HelpBlock>
+          </FormGroup>
 
-            <FormGroup>
-              <ControlLabel>Icon</ControlLabel>
-              <Input
-                name="icon"
-                onChange={(value) => setFieldValue("icon", value)}
-                onBlur={handleBlur}
-              />
-            </FormGroup>
-            <FormGroup>
-              <ButtonToolbar>
-                <Button
-                  appearance="primary"
-                  type="submit"
-                  disabled={isSubmitting}
-                >
-                  Submit
-                </Button>
-                <Button
-                  appearance="default"
-                  onClick={() => toggleAddFeedForm(false)}
-                >
-                  Cancel
-                </Button>
-              </ButtonToolbar>
-            </FormGroup>
-          </Form>
-        )
+          <FormGroup>
+            <ControlLabel>Icon</ControlLabel>
+            <Input
+              name="icon"
+              onChange={(value) => setFieldValue("icon", value)}
+              onBlur={handleBlur}
+            />
+          </FormGroup>
+          <FormGroup>
+            <ButtonToolbar>
+              <Button
+                appearance="primary"
+                type="submit"
+                disabled={isSubmitting}
+              >
+                Submit
+              </Button>
+              <Button
+                appearance="default"
+                onClick={() => toggleAddFeedForm(false)}
+              >
+                Cancel
+              </Button>
+            </ButtonToolbar>
+          </FormGroup>
+        </Form>
       )}
     </Formik>
   );

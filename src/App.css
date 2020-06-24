@@ -5,6 +5,7 @@ h1 {
 
 h2 {
   font-size: 1.4em;
+  line-height: 30px;
 }
 
 h3 {
@@ -18,12 +19,14 @@ body {
   background-color: #f7f7f7;
 }
 
-.addFeedIcon {
+.addFeedButton {
   cursor: pointer;
+  font-weight: bold;
+  text-align: center;
 }
 
-.addFeedIcon:hover {
-  color: red;
+.addFeedButton:hover {
+  color: #2296f3;
 }
 
 .rs-avatar {
@@ -38,4 +41,9 @@ body {
   background-color: white;
   padding: 40px;
   border-radius: 6px;
+}
+
+.feedlist {
+  max-height: 500px;
+  overflow-y: auto;
 }

@@ -1,5 +1,5 @@
 import React from "react";
-import { List, FlexboxGrid, Icon } from "rsuite";
+import { List, FlexboxGrid, Icon, IconButton } from "rsuite";
 
 const styleCenter = {
   display: "flex",
@@ -12,7 +12,7 @@ const titleStyle = {
   whiteSpace: "nowrap",
   fontWeight: 500,
 };
-const FeedItem = ({ item, index, rssUrl, setRssUrl }) => (
+const FeedItem = ({ item, index, rssUrl, setRssUrl, activeTab }) => (
   <List.Item
     index={index}
     onClick={() => setRssUrl(item.rss)}
@@ -22,7 +22,6 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl }) => (
     }}
   >
     <FlexboxGrid>
-      {/*icon*/}
       <FlexboxGrid.Item colspan={2} style={styleCenter}>
         <Icon
           icon={item.icon || item.name.toLowerCase() || "image"}
@@ -32,7 +31,6 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl }) => (
           }}
         />
       </FlexboxGrid.Item>
-      {/*base info*/}
       <FlexboxGrid.Item
         colspan={21}
         style={{
@@ -45,7 +43,15 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl }) => (
         <div style={titleStyle}>{item.name}</div>
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={1}>
-        <Icon icon="angle-right" />
+        {activeTab === "edit" ? (
+          <IconButton
+            size="xs"
+            icon={<Icon icon="trash-o" />}
+            onClick={() => console.log("delete feed please...")}
+          />
+        ) : (
+          <Icon icon="angle-right" />
+        )}
       </FlexboxGrid.Item>
     </FlexboxGrid>
   </List.Item>

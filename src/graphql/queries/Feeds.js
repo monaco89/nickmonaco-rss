@@ -6,6 +6,7 @@ const FEEDS = gql`
       _id
       name
       rss
+      icon
     }
   }
 `;

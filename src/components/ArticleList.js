@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 import RSSParser from "rss-parser";
-import ArticleListStyles from "./ArticleList.module.css";
-import { Icon } from "rsuite";
-import moment from "moment";
+import ArticleItem from "./ArticleItem";
+import Loading from "./Loading";
 
 const ArticleList = ({ rssUrl }) => {
   const [feed, setFeed] = useState({ title: "", items: [] });
+  const [loading, setLoading] = useState(true);
 
   const rssData = async () => {
     console.log("fetching...");
@@ -21,25 +21,17 @@ const ArticleList = ({ rssUrl }) => {
   };
   useEffect(() => {
     rssData();
-  }, []);
+    setLoading(false);
+  }, [loading]);
 
   console.log(feed);
 
   return (
     <div>
       <h2>{feed.title}</h2>
-      {feed.items.slice(0, 10).map((item, i) => (
-        <div key={i} className={ArticleListStyles.item}>
-          <a href={item.link} target="_blank">
-            <h1>{item.title}</h1>
-          </a>
-          <p>{item.content}</p>
-          <p>
-            <Icon icon="clock-o" style={{ color: "#2296F3" }} />{" "}
-            {moment(item.pubDate).calendar()}
-          </p>
-          <hr />
-        </div>
+      {loading && <Loading />}
+      {feed.items.slice(0, 10).map((item) => (
+        <ArticleItem key={item.guid || item.id || item.title} item={item} />
       ))}
     </div>
   );
