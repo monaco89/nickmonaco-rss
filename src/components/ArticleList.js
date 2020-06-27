@@ -28,7 +28,10 @@ const ArticleList = ({ rssUrl }) => {
 
   return (
     <div>
+      <img src={feed.image?.url} />
+
       <h2>{feed.title}</h2>
+      <h3>{feed.description}</h3>
       {loading && <Loading />}
       {feed.items.slice(0, 10).map((item) => (
         <ArticleItem key={item.guid || item.id || item.title} item={item} />
