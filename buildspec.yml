@@ -14,7 +14,7 @@ phases:
     commands:
       - echo Synchronizing S3 bucket directory $S3_BUCKET ...
       - aws s3 sync ./build $S3_BUCKET;
-      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths \"/*\";
+      - aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths "/*";
 artifacts:
   base-directory: public
   files:
