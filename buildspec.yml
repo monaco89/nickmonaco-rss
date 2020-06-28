@@ -1,0 +1,24 @@
+version: 0.2
+phases:
+  install:
+    runtime-versions:
+      nodejs: 10
+  pre_build:
+    commands:
+      - "yarn install --frozen-lockfile"
+  build:
+    commands:
+      # - printenv > .env
+      - "yarn deploy"
+  post_build:
+    commands:
+      - aws s3 sync ./build $S3_BUCKET
+artifacts:
+  base-directory: public
+  files:
+    - "**/*"
+  discard-paths: no
+cache:
+  paths:
+    - ".cache/*"
+    - "public/*"
