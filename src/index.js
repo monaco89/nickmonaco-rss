@@ -13,7 +13,6 @@ import { onError } from "@apollo/link-error";
 import { RetryLink } from "@apollo/link-retry";
 
 const authLink = new ApolloLink((operation, forward) => {
-  console.log(localStorage.getItem("rss_token"));
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
