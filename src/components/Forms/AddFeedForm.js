@@ -40,7 +40,7 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
       onSubmit={async (values, { setSubmitting, setStatus }) => {
         const { error } = await addFeed({
           variables: {
-            record: {
+            input: {
               name: values.name,
               icon: values.icon,
               rss: values.rss,

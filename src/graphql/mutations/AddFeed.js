@@ -1,9 +1,9 @@
 import gql from "graphql-tag";
 
 const ADD_FEED = gql`
-  mutation AddFeed($record: CreateOneFeedInput!) {
-    feedCreateOne(record: $record) {
-      recordId
+  mutation CreateFeed($input: CreateFeedInput!) {
+    createFeed(input: $input) {
+      id
     }
   }
 `;

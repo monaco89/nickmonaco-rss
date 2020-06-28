@@ -12,6 +12,18 @@ import {
 import { onError } from "@apollo/link-error";
 import { RetryLink } from "@apollo/link-retry";
 
+const authLink = new ApolloLink((operation, forward) => {
+  console.log(localStorage.getItem("rss_token"));
+  operation.setContext(({ headers = {} }) => ({
+    headers: {
+      ...headers,
+      "x-token": localStorage.getItem("rss_token"),
+    },
+  }));
+
+  return forward(operation);
+});
+
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message, locations, path }) => {
@@ -25,6 +37,7 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 });
 
 const link = ApolloLink.from([
+  authLink,
   new RetryLink(),
   errorLink,
   new HttpLink({

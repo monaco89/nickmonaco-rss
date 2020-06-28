@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { List, FlexboxGrid } from "rsuite";
+import { List, FlexboxGrid, Message } from "rsuite";
 import { useQuery } from "@apollo/client";
 import FEEDS_QUERY from "../graphql/queries/Feeds";
 import FeedItem from "./FeedItem";
@@ -13,7 +13,7 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
   const { loading, data, error } = useQuery(FEEDS_QUERY);
 
   if (loading) return <Loading />;
-  if (error) return `Error ${error.message}`;
+  if (error) return <Message type="error" description={error.message} />;
 
   console.log("feeds", data);
 
@@ -35,7 +35,7 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             </FlexboxGrid.Item>
           </FlexboxGrid>
         </List.Item>
-        {data.feedMany?.map((item, index) => (
+        {data?.feedMany?.map((item, index) => (
           <FeedItem
             item={item}
             index={index}
