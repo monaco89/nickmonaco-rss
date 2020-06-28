@@ -9,10 +9,16 @@ phases:
   build:
     commands:
       # - printenv > .env
-      - "yarn deploy"
+      - "yarn build"
   post_build:
     commands:
-      - aws s3 sync ./build $S3_BUCKET
+      - echo Synchronizing S3 bucket directory $S3_BUCKET ...
+      - if [ $CODEBUILD_BUILD_SUCCEEDING = 1 ]; then
+        aws s3 sync ./build $S3_BUCKET;
+        aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths "/*";
+        else
+        echo Build failed ignoring deployment;
+        fi
 artifacts:
   base-directory: public
   files:
