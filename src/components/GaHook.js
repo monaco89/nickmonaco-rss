@@ -13,8 +13,8 @@ export const withTracker = (WrappedComponent, options = {}) => {
   };
 
   const HOC = (props) => {
-    useEffect(() => trackPage(props.location.pathname), [
-      props.location.pathname,
+    useEffect(() => trackPage(window.location.pathname), [
+      window.location.pathname,
     ]);
 
     return <WrappedComponent {...props} />;
