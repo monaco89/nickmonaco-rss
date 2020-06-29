@@ -25,7 +25,7 @@
     "rsuite": "^4.7.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=3001 react-scripts start",
     "build": "react-scripts build",
     "deploy": "react-scripts build && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths \"/*\"",
     "test": "react-scripts test",

@@ -5,7 +5,6 @@ import ArticleList from "./components/ArticleList";
 import Nav from "./components/Nav";
 import Foot from "./components/Footer";
 import Metadata from "./components/Metadata";
-import { withTracker } from "./components/GaHook";
 
 import "rsuite/dist/styles/rsuite-default.css";
 import "./App.css";
@@ -51,4 +50,4 @@ const App = () => {
   );
 };
 
-export default withTracker(App);
+export default App;
