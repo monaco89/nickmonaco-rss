@@ -34,7 +34,11 @@ const Header = () => {
               >
                 Sign In
               </Dropdown.Item>
-              {/* <Dropdown.Item href='https://bitly.com/98K8eH' alt='Create Account' icon={<Icon icon='user-plus' />} /> */}
+              <Dropdown.Item
+                href="https://bitly.com/98K8eH"
+                alt="Create Account"
+                icon={<Icon icon="user-plus" />}
+              />
             </Dropdown>
           </Nav>
         </Navbar.Body>

@@ -1,12 +1,6 @@
 import React from "react";
 import { Loader } from "rsuite";
 
-// const { Paragraph } = Placeholder;
-
-const Loading = () => (
-  // <Paragraph rows={8}>
-  <Loader content="loading..." center vertical size="md" />
-  // </Paragraph>
-);
+const Loading = () => <Loader content="loading..." center vertical size="md" />;
 
 export default Loading;

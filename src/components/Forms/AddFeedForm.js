@@ -24,10 +24,7 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
       }}
       validate={(values) => {
         let errors = {};
-        // Catch spam
-        //   if (values.honeypot) {
-        //     errors = true;
-        //   }
+
         if (!values.name) {
           errors.name = "Required";
         }
@@ -78,7 +75,6 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
               name="name"
               onChange={(value) => setFieldValue("name", value)}
               onBlur={handleBlur}
-              // errorMessage={touched.name && errors.name}
             />
             <HelpBlock>Required</HelpBlock>
           </FormGroup>
@@ -88,7 +84,6 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
               name="rss"
               onChange={(value) => setFieldValue("rss", value)}
               onBlur={handleBlur}
-              // errorMessage={touched.rss && errors.rss}
             />
             <HelpBlock>Required</HelpBlock>
           </FormGroup>
