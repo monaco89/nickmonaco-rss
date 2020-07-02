@@ -39,13 +39,10 @@ const SignInForm = ({ toggleSignIn }) => {
           },
         });
 
-        console.log("sybmit", error, data);
-
         if (error) {
-          console.log(error.message);
+          // console.log(error.message);
           setSubmitting(false);
           setStatus(error.message);
-          toggleSignIn(false);
         } else {
           localStorage.setItem("rss_token", data.login.token);
           toggleSignIn(false);
@@ -54,7 +51,6 @@ const SignInForm = ({ toggleSignIn }) => {
     >
       {({
         handleSubmit,
-        values,
         isSubmitting,
         status,
         touched,
