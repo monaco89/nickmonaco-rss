@@ -35,13 +35,13 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             </FlexboxGrid.Item>
           </FlexboxGrid>
         </List.Item>
-        {data?.feedMany?.map((item, index) => (
+        {data?.feeds?.map((item, index) => (
           <FeedItem
             item={item}
             index={index}
             rssUrl={rssUrl}
             setRssUrl={setRssUrl}
-            key={item._id}
+            key={item.id}
             activeTab={activeTab}
           />
         ))}

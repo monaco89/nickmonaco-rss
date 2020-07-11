@@ -1,5 +1,6 @@
 import React from "react";
-import { List, FlexboxGrid, Icon, IconButton } from "rsuite";
+import { List, FlexboxGrid, Icon } from "rsuite";
+import RemoveFeedButton from "./RemoveFeedButton";
 
 const styleCenter = {
   display: "flex",
@@ -44,11 +45,7 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl, activeTab }) => (
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={1}>
         {activeTab === "edit" ? (
-          <IconButton
-            size="xs"
-            icon={<Icon icon="trash-o" />}
-            onClick={() => console.log("delete feed please...")}
-          />
+          <RemoveFeedButton id={item.id} />
         ) : (
           <Icon icon="angle-right" />
         )}

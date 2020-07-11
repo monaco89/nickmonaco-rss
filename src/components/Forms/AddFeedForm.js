@@ -34,14 +34,13 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
 
         return errors;
       }}
-      onSubmit={async (values, { setSubmitting, setStatus }) => {
+      onSubmit={async ({ name, icon, rss }, { setSubmitting, setStatus }) => {
         const { error } = await addFeed({
           variables: {
             input: {
-              name: values.name,
-              icon: values.icon,
-              rss: values.rss,
-              enabled: true,
+              name,
+              icon,
+              rss,
             },
           },
         });
