@@ -9,6 +9,7 @@ import {
   Button,
   ButtonToolbar,
   FormControl,
+  Message,
 } from "rsuite";
 
 const SignInForm = ({ toggleSignIn }) => {
@@ -32,20 +33,24 @@ const SignInForm = ({ toggleSignIn }) => {
         return errors;
       }}
       onSubmit={async (values, { setSubmitting, setStatus }) => {
-        const { data, error } = await signIn({
-          variables: {
-            email: values.email,
-            password: values.password,
-          },
-        });
+        try {
+          const { data, error } = await signIn({
+            variables: {
+              email: values.email,
+              password: values.password,
+            },
+          });
 
-        if (error) {
-          // console.log(error.message);
+          if (error) {
+            setSubmitting(false);
+            setStatus(error.message);
+          } else {
+            localStorage.setItem("rss_token", data.login.token);
+            toggleSignIn(false);
+          }
+        } catch (err) {
           setSubmitting(false);
-          setStatus(error.message);
-        } else {
-          localStorage.setItem("rss_token", data.login.token);
-          toggleSignIn(false);
+          setStatus(err.message);
         }
       }}
     >
@@ -59,13 +64,12 @@ const SignInForm = ({ toggleSignIn }) => {
       }) => (
         <Form
           onSubmit={handleSubmit}
-          fluid
           onChange={(formValue) => {
             setFieldValue("email", formValue.email);
             setFieldValue("password", formValue.password);
           }}
         >
-          <p className="error">{status}</p>
+          {status && <Message type="error" description={status} />}
           <FormGroup>
             <ControlLabel>Email</ControlLabel>
             <FormControl

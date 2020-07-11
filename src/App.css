@@ -47,3 +47,10 @@ body {
   max-height: 500px;
   overflow-y: auto;
 }
+
+@media (max-width: 600px) {
+  .rs-modal-full .rs-modal-dialog {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

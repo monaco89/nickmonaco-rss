@@ -13,7 +13,7 @@ const titleStyle = {
   whiteSpace: "nowrap",
   fontWeight: 500,
 };
-const FeedItem = ({ item, index, rssUrl, setRssUrl, activeTab }) => (
+const FeedItem = ({ item, index, rssUrl, setRssUrl, activeTab, refetch }) => (
   <List.Item
     index={index}
     onClick={() => setRssUrl(item.rss)}
@@ -45,7 +45,7 @@ const FeedItem = ({ item, index, rssUrl, setRssUrl, activeTab }) => (
       </FlexboxGrid.Item>
       <FlexboxGrid.Item colspan={1}>
         {activeTab === "edit" ? (
-          <RemoveFeedButton id={item.id} />
+          <RemoveFeedButton id={item.id} refetch={refetch} />
         ) : (
           <Icon icon="angle-right" />
         )}

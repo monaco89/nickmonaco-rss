@@ -10,9 +10,10 @@ import {
   HelpBlock,
   Button,
   ButtonToolbar,
+  Message,
 } from "rsuite";
 
-const AddFeedForm = ({ toggleAddFeedForm }) => {
+const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
   const [addFeed] = useMutation(ADD_FEED_MUTATION);
 
   return (
@@ -35,23 +36,28 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
         return errors;
       }}
       onSubmit={async ({ name, icon, rss }, { setSubmitting, setStatus }) => {
-        const { error } = await addFeed({
-          variables: {
-            input: {
-              name,
-              icon,
-              rss,
+        try {
+          const { error } = await addFeed({
+            variables: {
+              input: {
+                name,
+                icon,
+                rss,
+              },
             },
-          },
-        });
+          });
 
-        if (error) {
-          console.log(error.message);
+          if (error) {
+            setSubmitting(false);
+            setStatus(error.message);
+          } else {
+            setSubmitting(false);
+            toggleAddFeedForm(false);
+            refetch();
+          }
+        } catch (err) {
           setSubmitting(false);
-          setStatus(error.message);
-        } else {
-          setSubmitting(false);
-          toggleAddFeedForm(false);
+          setStatus(err.message);
         }
       }}
     >
@@ -67,7 +73,7 @@ const AddFeedForm = ({ toggleAddFeedForm }) => {
         setFieldValue,
       }) => (
         <Form onSubmit={handleSubmit} fluid>
-          <p className="error">{status}</p>
+          {status && <Message type="error" description={status} />}
           <FormGroup>
             <ControlLabel>Name</ControlLabel>
             <Input

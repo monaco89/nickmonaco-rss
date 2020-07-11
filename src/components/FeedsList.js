@@ -10,12 +10,10 @@ import Loading from "./Loading";
 const FeedsList = ({ rssUrl, setRssUrl }) => {
   const [activeTab, setActiveTab] = useState("articles");
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
-  const { loading, data, error } = useQuery(FEEDS_QUERY);
+  const { loading, data, error, refetch } = useQuery(FEEDS_QUERY);
 
   if (loading) return <Loading />;
-  if (error) return <Message type="error" description={error.message} />;
-
-  console.log("feeds", data);
+  if (error) return <Message type="info" description={error.message} />;
 
   return (
     <>
@@ -25,6 +23,7 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
         <AddFormModal
           showAddFeedForm={showAddFeedForm}
           toggleAddFeedForm={toggleAddFeedForm}
+          refetch={refetch}
         />
       )}
       <List bordered hover className="feedlist">
@@ -43,6 +42,7 @@ const FeedsList = ({ rssUrl, setRssUrl }) => {
             setRssUrl={setRssUrl}
             key={item.id}
             activeTab={activeTab}
+            refetch={refetch}
           />
         ))}
         {activeTab === "edit" && (

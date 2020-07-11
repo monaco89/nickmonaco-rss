@@ -8,7 +8,6 @@ const ArticleList = ({ rssUrl }) => {
   const [loading, setLoading] = useState(true);
 
   const rssData = async () => {
-    console.log("fetching...");
     const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
     let parser = new RSSParser();
 
@@ -23,8 +22,6 @@ const ArticleList = ({ rssUrl }) => {
     rssData();
     setLoading(false);
   }, [loading]);
-
-  console.log(feed);
 
   return (
     <div>
