@@ -30,7 +30,7 @@ const App = () => {
         </Header>
         <Content>
           <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item componentClass={Col} colspan={24} md={10} xs={24}>
+            <FlexboxGrid.Item componentClass={Col} colspan={24} md={8} xs={24}>
               {showSignIn ? (
                 <SignInForm toggleSignIn={toggleSignIn} />
               ) : (
@@ -40,7 +40,7 @@ const App = () => {
             <FlexboxGrid.Item
               componentClass={Col}
               colspan={24}
-              md={14}
+              md={16}
               xs={24}
               style={{ paddingLeft: "40px" }}
             >
