@@ -1,5 +1,5 @@
 import React from "react";
-import { Icon } from "rsuite";
+import { Icon, Tag, TagGroup } from "rsuite";
 import parse from "html-react-parser";
 import ArticleListStyles from "./ArticleList.module.css";
 import moment from "moment";
@@ -9,7 +9,14 @@ const ArticleItem = ({ item }) => (
     <a href={item.link} target="_blank" rel="noopener noreferrer">
       <h1>{item.title}</h1>
     </a>
-    <p>{parse(item.content || "")}</p>
+    <div style={{ marginBottom: "5px" }}>
+      <TagGroup>
+        {item.categories?.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </TagGroup>
+    </div>
+    {parse(item.content || "")}
     <p>
       <Icon icon="clock-o" style={{ color: "#2296F3" }} />{" "}
       {moment(item.pubDate).calendar()}

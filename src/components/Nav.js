@@ -9,7 +9,7 @@ const Header = ({ session, toggleSignIn }) => (
     {(client) => (
       <Navbar>
         <Navbar.Header>
-          <h1>Nick's RSS Feed</h1>
+          <h1 className="rainbow-text">Nick's RSS Feed</h1>
         </Navbar.Header>
         <Navbar.Body>
           <Nav pullRight>

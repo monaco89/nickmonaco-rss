@@ -19,14 +19,41 @@ body {
   background-color: #f7f7f7;
 }
 
-.addFeedButton {
-  cursor: pointer;
-  font-weight: bold;
-  text-align: center;
+a:hover,
+a:active,
+a:visited {
+  color: #056676;
 }
 
-.addFeedButton:hover {
-  color: #2296f3;
+.rs-sidenav-default.rs-sidenav-collapse-in .rs-dropdown-menu > li.rs-dropdown-item-active > .rs-dropdown-item-content,
+.rs-sidenav-default.rs-sidenav-collapsing .rs-dropdown-menu > li.rs-dropdown-item-active > .rs-dropdown-item-content {
+  color: #e8ded2;
+}
+
+.rs-sidenav-default.rs-sidenav-collapse-in .rs-dropdown-menu > li.rs-dropdown-item-active > .rs-dropdown-item-content,
+.rs-sidenav-default.rs-sidenav-collapsing .rs-dropdown-menu > li.rs-dropdown-item-active > .rs-dropdown-item-content,
+.rs-sidenav-default.rs-sidenav-collapse-in
+  .rs-dropdown-menu
+  > li.rs-dropdown-item-active
+  > .rs-dropdown-item-content:hover,
+.rs-sidenav-default.rs-sidenav-collapsing
+  .rs-dropdown-menu
+  > li.rs-dropdown-item-active
+  > .rs-dropdown-item-content:hover,
+.rs-sidenav-default.rs-sidenav-collapse-in
+  .rs-dropdown-menu
+  > li.rs-dropdown-item-active
+  > .rs-dropdown-item-content:focus,
+.rs-sidenav-default.rs-sidenav-collapsing
+  .rs-dropdown-menu
+  > li.rs-dropdown-item-active
+  > .rs-dropdown-item-content:focus {
+  background-color: #056676;
+}
+
+.rs-tag {
+  background-color: #5eaaa8;
+  color: white;
 }
 
 .rs-avatar {
@@ -43,9 +70,10 @@ body {
   border-radius: 6px;
 }
 
-.feedlist {
-  max-height: 500px;
-  overflow-y: auto;
+.rainbow-text {
+  background-image: linear-gradient(to left, #e8ded2, #a3d2ca, #5eaaa8, #056676);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 @media (max-width: 600px) {

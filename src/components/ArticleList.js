@@ -22,11 +22,10 @@ const ArticleList = ({ rssUrl }) => {
     rssData();
     setLoading(false);
   }, [loading]);
-
+  console.log(feed);
   return (
     <div>
-      <img src={feed.image?.url} />
-
+      <img src={feed.image?.url} alt={feed.title} />
       <h2>{feed.title}</h2>
       <h3>{feed.description}</h3>
       {loading && <Loading />}
