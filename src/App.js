@@ -6,13 +6,23 @@ import Foot from "./components/Footer";
 import Metadata from "./components/Metadata";
 import SignInForm from "./components//Forms/SignInForm";
 import Sidebar from "./components/Sidebar";
+// import AuthWrapper from './components/AuthWrapper';
+import { useAuth0 } from "@auth0/auth0-react";
 
 import "rsuite/dist/styles/rsuite-default.css";
 import "./App.css";
 
 const App = () => {
+  const { isLoading, error } = useAuth0();
   const [showSignIn, toggleSignIn] = useState(false);
   const [rssUrl, setRssUrl] = useState(null);
+
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+  if (error) {
+    return <div>Oops... {error.message}</div>;
+  }
 
   return (
     <>
@@ -26,7 +36,7 @@ const App = () => {
       />
       <Container>
         <Header>
-          <Nav toggleSignIn={toggleSignIn} />
+          <Nav />
         </Header>
         <Content>
           <FlexboxGrid justify="space-around">

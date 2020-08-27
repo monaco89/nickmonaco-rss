@@ -24,6 +24,14 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
           refetch={refetch}
         />
       )}
+      {error && (
+        <Message
+          type="info"
+          description={error.message}
+          style={{ backgroundColor: "#a3d2ca" }}
+        />
+      )}
+      <br />
       <Sidenav
         expanded={expanded}
         defaultOpenKeys={["3"]}
@@ -33,13 +41,6 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
       >
         <Sidenav.Body>
           <Nav>
-            {error && (
-              <Message
-                type="info"
-                description={error.message}
-                style={{ backgroundColor: "#a3d2ca" }}
-              />
-            )}
             <Dropdown eventKey="3" title="Feeds" icon={<Icon icon="rss" />}>
               {data?.feeds?.map((item, index) => (
                 <FeedItem

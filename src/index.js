@@ -11,8 +11,10 @@ import {
 } from "@apollo/client";
 import { onError } from "@apollo/link-error";
 import { RetryLink } from "@apollo/link-retry";
+import { Auth0Provider } from "@auth0/auth0-react";
 
 const authLink = new ApolloLink((operation, forward) => {
+  // console.log('Access token', accessToken);
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
@@ -49,9 +51,15 @@ const client = new ApolloClient({
 });
 
 ReactDOM.render(
-  <ApolloProvider client={client}>
-    <App />
-  </ApolloProvider>,
+  <Auth0Provider
+    domain={process.env.REACT_APP_AUTH0_DOMAIN}
+    clientId={process.env.REACT_APP_AUTH0_CLIENT_ID}
+    redirectUri={window.location.origin}
+  >
+    <ApolloProvider client={client}>
+      <App />
+    </ApolloProvider>
+  </Auth0Provider>,
   document.getElementById("root")
 );
 
