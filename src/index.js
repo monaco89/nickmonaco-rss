@@ -1,24 +1,25 @@
-import React from "react";
-import ReactDOM from "react-dom";
-import App from "./App";
-import * as serviceWorker from "./serviceWorker";
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {
   ApolloClient,
   HttpLink,
   InMemoryCache,
   ApolloProvider,
   ApolloLink,
-} from "@apollo/client";
-import { onError } from "@apollo/link-error";
-import { RetryLink } from "@apollo/link-retry";
-import { Auth0Provider } from "@auth0/auth0-react";
+} from '@apollo/client';
+import { onError } from '@apollo/link-error';
+import { RetryLink } from '@apollo/link-retry';
+import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import App from './App';
+import * as serviceWorker from './serviceWorker';
 
 const authLink = new ApolloLink((operation, forward) => {
-  // console.log('Access token', accessToken);
+  const { user } = useAuth0();
+  console.log(user);
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      "x-token": localStorage.getItem("rss_token"),
+      'x-token': user.email,
     },
   }));
 
@@ -27,12 +28,14 @@ const authLink = new ApolloLink((operation, forward) => {
 
 const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
-    graphQLErrors.forEach(({ message, locations, path }) => {
-      console.log("error", message);
+    graphQLErrors.forEach(({ message }) => {
+      // TODO Log errors
+      console.log('error', message);
     });
   }
   if (networkError) {
-    console.log("Network error", networkError);
+    // TODO Log errors
+    // console.log('Network error', networkError);
   }
 });
 
@@ -60,7 +63,7 @@ ReactDOM.render(
       <App />
     </ApolloProvider>
   </Auth0Provider>,
-  document.getElementById("root")
+  document.getElementById('root'),
 );
 
 // If you want your app to work offline and load faster, you can change

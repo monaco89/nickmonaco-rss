@@ -1,19 +1,18 @@
-import React, { useState } from "react";
-import { Sidenav, Nav, Icon, Dropdown, Message } from "rsuite";
-import { useQuery } from "@apollo/client";
-import FEEDS_QUERY from "../graphql/queries/Feeds";
-import Loading from "./Loading";
-import FeedItem from "./FeedItem";
-import AddFormModal from "./AddFeedFormModal";
+import React, { useState } from 'react';
+import { Sidenav, Nav, Icon, Dropdown, Message } from 'rsuite';
+import { useQuery } from '@apollo/client';
+import FEEDS_QUERY from '../../graphql/queries/Feeds';
+import Loading from '../Loading';
+import FeedItem from '../FeedItem';
+import AddFormModal from '../AddFeedFormModal';
 
 const Sidebar = ({ setRssUrl, rssUrl }) => {
-  const [activeKey, setActiveKey] = useState("3");
+  const [activeKey, setActiveKey] = useState('3');
   const [expanded, toggleExpand] = useState(true);
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
   const { loading, data, error, refetch } = useQuery(FEEDS_QUERY);
 
   if (loading) return <Loading />;
-  // if (error) return <Message type='info' description={error.message} />;
 
   return (
     <div>
@@ -28,16 +27,16 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
         <Message
           type="info"
           description={error.message}
-          style={{ backgroundColor: "#a3d2ca" }}
+          style={{ backgroundColor: '#a3d2ca' }}
         />
       )}
       <br />
       <Sidenav
         expanded={expanded}
-        defaultOpenKeys={["3"]}
+        defaultOpenKeys={['3']}
         activeKey={activeKey}
         onSelect={(key) => setActiveKey(key)}
-        style={{ backgroundColor: "white", borderRadius: "6px" }}
+        style={{ backgroundColor: 'white', borderRadius: '6px' }}
       >
         <Sidenav.Body>
           <Nav>
@@ -75,7 +74,7 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
               }
               onClick={() => toggleExpand(!expanded)}
             >
-              {expanded ? "Hide" : "Show"}
+              {expanded ? 'Hide' : 'Show'}
             </Nav.Item>
             {/* <RemoveFeedButton id={item.id} refetch={refetch} /> */}
           </Nav>

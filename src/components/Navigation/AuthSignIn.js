@@ -1,6 +1,6 @@
-import React from "react";
-import { useAuth0 } from "@auth0/auth0-react";
-import { Dropdown, Icon } from "rsuite";
+import React from 'react';
+import { useAuth0 } from '@auth0/auth0-react';
+import { Dropdown, Icon } from 'rsuite';
 
 const AuthSignIn = () => {
   const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
@@ -11,7 +11,7 @@ const AuthSignIn = () => {
       title="Sign In"
       onClick={loginWithRedirect}
     >
-      Auth0 Sign In
+      Sign In
     </Dropdown.Item>
   ) : (
     <Dropdown.Item
@@ -21,7 +21,7 @@ const AuthSignIn = () => {
         logout({ returnTo: window.location.origin });
       }}
     >
-      Auth0 Sign Out
+      Sign Out
     </Dropdown.Item>
   );
 };
