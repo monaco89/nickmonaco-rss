@@ -15,11 +15,10 @@ import * as serviceWorker from './serviceWorker';
 
 const authLink = new ApolloLink((operation, forward) => {
   const { user } = useAuth0();
-  console.log(user);
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      'x-token': user.email,
+      'x-token': user.sub,
     },
   }));
 

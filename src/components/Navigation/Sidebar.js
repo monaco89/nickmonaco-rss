@@ -3,7 +3,7 @@ import { Sidenav, Nav, Icon, Dropdown, Message } from 'rsuite';
 import { useQuery } from '@apollo/client';
 import FEEDS_QUERY from '../../graphql/queries/Feeds';
 import Loading from '../Loading';
-import FeedItem from '../FeedItem';
+import FeedsDropdown from './FeedsDropdown';
 import AddFormModal from '../AddFeedFormModal';
 
 const Sidebar = ({ setRssUrl, rssUrl }) => {
@@ -40,17 +40,11 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
       >
         <Sidenav.Body>
           <Nav>
-            <Dropdown eventKey="3" title="Feeds" icon={<Icon icon="rss" />}>
-              {data?.feeds?.map((item, index) => (
-                <FeedItem
-                  item={item}
-                  index={index}
-                  setRssUrl={setRssUrl}
-                  rssUrl={rssUrl}
-                  key={item.id}
-                />
-              ))}
-            </Dropdown>
+            <FeedsDropdown
+              setRssUrl={setRssUrl}
+              rssUrl={rssUrl}
+              feeds={data.feeds}
+            />
             <Dropdown
               eventKey="4"
               title="Podcasts"

@@ -1,7 +1,5 @@
-import React from "react";
-import { Formik } from "formik";
-import { useMutation } from "@apollo/client";
-import ADD_FEED_MUTATION from "../../graphql/mutations/AddFeed";
+import React from 'react';
+import { Formik } from 'formik';
 import {
   Form,
   FormGroup,
@@ -11,7 +9,9 @@ import {
   Button,
   ButtonToolbar,
   Message,
-} from "rsuite";
+} from 'rsuite';
+import { useMutation } from '@apollo/client';
+import ADD_FEED_MUTATION from '../../graphql/mutations/AddFeed';
 
 const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
   const [addFeed] = useMutation(ADD_FEED_MUTATION);
@@ -19,18 +19,18 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
   return (
     <Formik
       initialValues={{
-        name: "",
-        icon: "",
-        rss: "",
+        name: '',
+        icon: '',
+        rss: '',
       }}
       validate={(values) => {
-        let errors = {};
+        const errors = {};
 
         if (!values.name) {
-          errors.name = "Required";
+          errors.name = 'Required';
         }
         if (!values.rss) {
-          errors.rss = "Required";
+          errors.rss = 'Required';
         }
 
         return errors;
@@ -61,24 +61,14 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
         }
       }}
     >
-      {({
-        handleChange,
-        handleSubmit,
-        handleBlur,
-        values,
-        errors,
-        isSubmitting,
-        status,
-        touched,
-        setFieldValue,
-      }) => (
+      {({ handleSubmit, handleBlur, isSubmitting, status, setFieldValue }) => (
         <Form onSubmit={handleSubmit} fluid>
           {status && <Message type="error" description={status} />}
           <FormGroup>
             <ControlLabel>Name</ControlLabel>
             <Input
               name="name"
-              onChange={(value) => setFieldValue("name", value)}
+              onChange={(value) => setFieldValue('name', value)}
               onBlur={handleBlur}
             />
             <HelpBlock>Required</HelpBlock>
@@ -87,7 +77,7 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
             <ControlLabel>RSS URL</ControlLabel>
             <Input
               name="rss"
-              onChange={(value) => setFieldValue("rss", value)}
+              onChange={(value) => setFieldValue('rss', value)}
               onBlur={handleBlur}
             />
             <HelpBlock>Required</HelpBlock>
@@ -97,7 +87,7 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
             <ControlLabel>Icon</ControlLabel>
             <Input
               name="icon"
-              onChange={(value) => setFieldValue("icon", value)}
+              onChange={(value) => setFieldValue('icon', value)}
               onBlur={handleBlur}
             />
           </FormGroup>
