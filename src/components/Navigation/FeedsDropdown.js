@@ -2,7 +2,7 @@ import React from 'react';
 import { Dropdown, Icon } from 'rsuite';
 
 const FeedsDropdown = ({ feeds, setRssUrl, rssUrl }) => (
-  <Dropdown eventKey="3" title="Feeds" icon={<Icon icon="rss" />}>
+  <Dropdown eventKey="3" title="Feeds" id="feeds" icon={<Icon icon="rss" />}>
     {feeds?.map(({ rss, icon, name }, index) => (
       <Dropdown.Item
         eventKey={`3-${index}`}
