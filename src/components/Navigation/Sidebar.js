@@ -43,7 +43,7 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
             <FeedsDropdown
               setRssUrl={setRssUrl}
               rssUrl={rssUrl}
-              feeds={data.feeds}
+              feeds={data?.feeds}
             />
             <Dropdown
               eventKey="4"

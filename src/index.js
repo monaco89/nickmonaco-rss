@@ -9,16 +9,15 @@ import {
 } from '@apollo/client';
 import { onError } from '@apollo/link-error';
 import { RetryLink } from '@apollo/link-retry';
-import { Auth0Provider, useAuth0 } from '@auth0/auth0-react';
+import { Auth0Provider } from '@auth0/auth0-react';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 const authLink = new ApolloLink((operation, forward) => {
-  const { user } = useAuth0();
   operation.setContext(({ headers = {} }) => ({
     headers: {
       ...headers,
-      'x-token': user.sub,
+      'x-token': localStorage.getItem('rss_token'),
     },
   }));
 

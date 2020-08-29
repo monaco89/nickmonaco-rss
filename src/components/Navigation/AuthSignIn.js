@@ -2,18 +2,11 @@ import React from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 import { Dropdown, Icon } from 'rsuite';
 
-const AuthSignIn = () => {
-  const { isAuthenticated, loginWithRedirect, logout } = useAuth0();
+const AuthSignIn = ({ session }) => {
+  const { loginWithRedirect, logout } = useAuth0();
 
-  return !isAuthenticated ? (
-    <Dropdown.Item
-      icon={<Icon icon="sign-in" />}
-      title="Sign In"
-      onClick={loginWithRedirect}
-    >
-      Sign In
-    </Dropdown.Item>
-  ) : (
+  // ? Should I be using sub here
+  return session && session.sub ? (
     <Dropdown.Item
       icon={<Icon icon="sign-out" />}
       title="Sign Out"
@@ -21,7 +14,15 @@ const AuthSignIn = () => {
         logout({ returnTo: window.location.origin });
       }}
     >
-      Sign Out
+      Auth Sign Out
+    </Dropdown.Item>
+  ) : (
+    <Dropdown.Item
+      icon={<Icon icon="sign-in" />}
+      title="Sign In"
+      onClick={loginWithRedirect}
+    >
+      Auth Sign In
     </Dropdown.Item>
   );
 };
