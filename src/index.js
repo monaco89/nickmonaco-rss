@@ -10,6 +10,7 @@ import {
 import { onError } from '@apollo/link-error';
 import { RetryLink } from '@apollo/link-retry';
 import { Auth0Provider } from '@auth0/auth0-react';
+// import { Message } from 'rsuite';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
@@ -28,7 +29,8 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
   if (graphQLErrors) {
     graphQLErrors.forEach(({ message }) => {
       // TODO Log errors
-      console.log('error', message);
+      console.log('Error', message);
+      // return <Message full showIcon type="warning" description="Warning" />;
     });
   }
   if (networkError) {

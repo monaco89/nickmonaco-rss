@@ -1,20 +1,21 @@
-import React, { useEffect, useState } from "react";
-import RSSParser from "rss-parser";
-import ArticleItem from "./ArticleItem";
-import Loading from "./Loading";
+import React, { useEffect, useState } from 'react';
+import RSSParser from 'rss-parser';
+import ArticleItem from './ArticleItem';
+import Loading from './Loading';
 
 const ArticleList = ({ rssUrl }) => {
-  const [feed, setFeed] = useState({ title: "", items: [] });
+  const [feed, setFeed] = useState({ title: '', items: [] });
   const [loading, setLoading] = useState(true);
 
   const rssData = async () => {
-    const CORS_PROXY = "https://cors-anywhere.herokuapp.com/";
+    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
     let parser = new RSSParser();
 
     try {
-      const feed = await parser.parseURL(`${CORS_PROXY}${rssUrl}`);
-      setFeed(feed);
+      const rssFeed = await parser.parseURL(`${CORS_PROXY}${rssUrl}`);
+      setFeed(rssFeed);
     } catch (error) {
+      // TODO Log error
       console.log(error);
     }
   };
@@ -22,7 +23,7 @@ const ArticleList = ({ rssUrl }) => {
     rssData();
     setLoading(false);
   }, [loading]);
-  console.log(feed);
+
   return (
     <div>
       <img src={feed.image?.url} alt={feed.title} />

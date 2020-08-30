@@ -44,6 +44,7 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
               setRssUrl={setRssUrl}
               rssUrl={rssUrl}
               feeds={data?.feeds}
+              refetch={refetch}
             />
             <Dropdown
               eventKey="4"

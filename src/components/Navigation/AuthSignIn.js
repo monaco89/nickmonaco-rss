@@ -11,6 +11,7 @@ const AuthSignIn = ({ session }) => {
       icon={<Icon icon="sign-out" />}
       title="Sign Out"
       onClick={() => {
+        localStorage.removeItem('rss_token');
         logout({ returnTo: window.location.origin });
       }}
     >

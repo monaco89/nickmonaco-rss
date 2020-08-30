@@ -47,6 +47,7 @@ const SignInForm = ({ toggleSignIn }) => {
           } else {
             localStorage.setItem('rss_token', data.login.token);
             toggleSignIn(false);
+            window.location.reload();
           }
         } catch (err) {
           setSubmitting(false);
@@ -68,6 +69,7 @@ const SignInForm = ({ toggleSignIn }) => {
             setFieldValue('email', formValue.email);
             setFieldValue('password', formValue.password);
           }}
+          fluid
         >
           {status && <Message type="error" description={status} />}
           <FormGroup>
