@@ -1,6 +1,6 @@
 import React from 'react';
 import { Modal } from 'rsuite';
-import SignInForm from './Forms/SignInForm';
+import SignInForm from '../Forms/SignInForm';
 
 const SignInModal = ({ showSignIn, toggleSignIn }) => (
   <Modal show={showSignIn} full onHide={() => toggleSignIn(false)}>

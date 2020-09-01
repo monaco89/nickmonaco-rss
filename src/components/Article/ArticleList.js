@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import RSSParser from 'rss-parser';
 import ArticleItem from './ArticleItem';
-import Loading from './Loading';
+import Loading from '../Loading';
 
 const ArticleList = ({ rssUrl }) => {
   const [feed, setFeed] = useState({ title: '', items: [] });
@@ -9,7 +9,7 @@ const ArticleList = ({ rssUrl }) => {
 
   const rssData = async () => {
     const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
-    let parser = new RSSParser();
+    const parser = new RSSParser();
 
     try {
       const rssFeed = await parser.parseURL(`${CORS_PROXY}${rssUrl}`);

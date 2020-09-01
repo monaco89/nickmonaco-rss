@@ -1,11 +1,10 @@
-import React from 'react';
 import { useQuery } from '@apollo/client';
 import { useAuth0 } from '@auth0/auth0-react';
-import MeQuery from '../graphql/queries/Me';
+import MeQuery from '../../graphql/queries/Me';
 
-const withSession = (Component) => (props) => {
+function useSession() {
   const { user, isAuthenticated } = useAuth0();
-  const { refetch, data } = useQuery(MeQuery, { skip: isAuthenticated });
+  const { data } = useQuery(MeQuery, { skip: isAuthenticated });
 
   // console.log('user', user, isAuthenticated);
   // console.log('data', data);
@@ -15,13 +14,7 @@ const withSession = (Component) => (props) => {
     localStorage.setItem('rss_token', user.sub);
   }
 
-  return (
-    <Component
-      {...props}
-      session={isAuthenticated ? user : data}
-      refetch={refetch}
-    />
-  );
-};
+  return isAuthenticated ? user : data;
+}
 
-export default withSession;
+export default useSession;

@@ -4,7 +4,7 @@ import { useQuery } from '@apollo/client';
 import FEEDS_QUERY from '../../graphql/queries/Feeds';
 import Loading from '../Loading';
 import FeedsDropdown from './FeedsDropdown';
-import AddFormModal from '../AddFeedFormModal';
+import AddFormModal from './AddFeedFormModal';
 
 const Sidebar = ({ setRssUrl, rssUrl }) => {
   const [activeKey, setActiveKey] = useState('3');

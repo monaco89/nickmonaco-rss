@@ -1,12 +1,13 @@
 import React from 'react';
 import { Dropdown, Icon } from 'rsuite';
-import RemoveFeedButton from '../RemoveFeedButton';
+import RemoveFeedButton from './RemoveFeedButton';
 
 const FeedsDropdown = ({ feeds, setRssUrl, rssUrl, refetch }) => (
   <Dropdown eventKey="3" title="Feeds" id="feeds" icon={<Icon icon="rss" />}>
     {feeds?.map(({ rss, icon, name, id }, index) => (
       <Dropdown.Item
         eventKey={`3-${index}`}
+        // eslint-disable-next-line
         key={`3-${index}`}
         onClick={() => setRssUrl(rss)}
         // TODO Dont use name.toLowerCase()

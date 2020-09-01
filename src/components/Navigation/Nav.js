@@ -2,11 +2,12 @@ import React, { useState } from 'react';
 import { Navbar, Nav, Avatar, Dropdown } from 'rsuite';
 import AuthSignIn from './AuthSignIn';
 import SignInDropdown from './SignInDropdown';
-import SignInModal from '../SignInModal';
-import withSession from '../../utils/Session';
+import SignInModal from './SignInModal';
+import useSession from '../../utils/hooks/useSession';
 import pic from '../../images/pic2.jpg';
 
-const Header = ({ session }) => {
+const Header = () => {
+  const session = useSession();
   const [showSignIn, toggleSignIn] = useState(false);
 
   return (
@@ -38,4 +39,4 @@ const Header = ({ session }) => {
   );
 };
 
-export default withSession(Header);
+export default Header;

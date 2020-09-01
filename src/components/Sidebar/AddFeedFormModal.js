@@ -1,6 +1,6 @@
-import React from "react";
-import { Modal } from "rsuite";
-import AddFeedForm from "./Forms/AddFeedForm";
+import React from 'react';
+import { Modal } from 'rsuite';
+import AddFeedForm from '../Forms/AddFeedForm';
 
 const AddFeedFormModal = ({ showAddFeedForm, toggleAddFeedForm, refetch }) => (
   <Modal show={showAddFeedForm} full onHide={() => toggleAddFeedForm(false)}>
