@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Sidenav, Nav, Icon, Dropdown, Message } from 'rsuite';
+import { Sidenav, Nav, Icon, Dropdown } from 'rsuite';
 import { useQuery } from '@apollo/client';
 import FEEDS_QUERY from '../../graphql/queries/Feeds';
 import Loading from '../Loading';
@@ -14,8 +14,6 @@ const Sidebar = () => {
 
   if (loading) return <Loading />;
 
-  // if (error) setMessage({ type: "error", message: error.message});
-
   return (
     <div>
       {toggleAddFeedForm && (
@@ -25,14 +23,6 @@ const Sidebar = () => {
           refetch={refetch}
         />
       )}
-      {error && (
-        <Message
-          type="info"
-          description={error.message}
-          style={{ backgroundColor: '#a3d2ca' }}
-        />
-      )}
-      <br />
       <Sidenav
         expanded={expanded}
         defaultOpenKeys={['3']}
@@ -47,6 +37,7 @@ const Sidebar = () => {
               eventKey="4"
               title="Podcasts"
               icon={<Icon icon="podcast" />}
+              disabled
             />
             <Nav.Item
               eventKey="1"
@@ -68,7 +59,6 @@ const Sidebar = () => {
             >
               {expanded ? 'Hide' : 'Show'}
             </Nav.Item>
-            {/* <RemoveFeedButton id={item.id} refetch={refetch} /> */}
           </Nav>
         </Sidenav.Body>
       </Sidenav>
