@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import { useMutation } from '@apollo/client';
 import {
@@ -8,11 +8,12 @@ import {
   Button,
   ButtonToolbar,
   FormControl,
-  Message,
 } from 'rsuite';
+import { MessageContext } from '../../utils/context';
 import SIGN_IN_MUTATION from '../../graphql/mutations/SignIn';
 
 const SignInForm = ({ toggleSignIn }) => {
+  const setMessage = useContext(MessageContext);
   const [signIn] = useMutation(SIGN_IN_MUTATION);
 
   return (
@@ -32,7 +33,7 @@ const SignInForm = ({ toggleSignIn }) => {
 
         return errors;
       }}
-      onSubmit={async (values, { setSubmitting, setStatus }) => {
+      onSubmit={async (values, { setSubmitting }) => {
         try {
           const { data, error } = await signIn({
             variables: {
@@ -43,7 +44,7 @@ const SignInForm = ({ toggleSignIn }) => {
 
           if (error) {
             setSubmitting(false);
-            setStatus(error.message);
+            setMessage({ type: 'error', message: error.message });
           } else {
             localStorage.setItem('rss_token', data.login.token);
             toggleSignIn(false);
@@ -51,18 +52,11 @@ const SignInForm = ({ toggleSignIn }) => {
           }
         } catch (err) {
           setSubmitting(false);
-          setStatus(err.message);
+          setMessage({ type: 'error', message: err.message });
         }
       }}
     >
-      {({
-        handleSubmit,
-        isSubmitting,
-        status,
-        touched,
-        errors,
-        setFieldValue,
-      }) => (
+      {({ handleSubmit, isSubmitting, touched, errors, setFieldValue }) => (
         <Form
           onSubmit={handleSubmit}
           onChange={(formValue) => {
@@ -71,7 +65,6 @@ const SignInForm = ({ toggleSignIn }) => {
           }}
           fluid
         >
-          {status && <Message type="error" description={status} />}
           <FormGroup>
             <ControlLabel>Email</ControlLabel>
             <FormControl

@@ -1,7 +1,15 @@
 import React, { useState } from 'react';
-import { Container, Header, Content, Footer, FlexboxGrid, Col } from 'rsuite';
+import {
+  Container,
+  Header,
+  Content,
+  Footer,
+  FlexboxGrid,
+  Col,
+  Message,
+} from 'rsuite';
 import { useAuth0 } from '@auth0/auth0-react';
-import { RssContext } from './utils/context';
+import { RssContext, MessageContext } from './utils/context';
 import ArticleList from './components/Article/ArticleList';
 import Nav from './components/Navigation/Nav';
 import Foot from './components/Footer';
@@ -14,6 +22,7 @@ import './App.css';
 const App = () => {
   const { isLoading, error } = useAuth0();
   const [rssUrl, setRssUrl] = useState(null);
+  const [message, setMessage] = useState({});
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -35,24 +44,39 @@ const App = () => {
       <Container>
         <Header>
           <Nav />
+          {message.type && (
+            <Message
+              showIcon
+              type={message.type}
+              description={message.message}
+              closable
+            />
+          )}
         </Header>
         <Content>
-          <FlexboxGrid justify="space-around">
-            <FlexboxGrid.Item componentClass={Col} colspan={24} md={6} xs={24}>
-              <RssContext.Provider value={setRssUrl}>
-                <Sidebar setRssUrl={setRssUrl} rssUrl={rssUrl} />
-              </RssContext.Provider>
-            </FlexboxGrid.Item>
-            <FlexboxGrid.Item
-              componentClass={Col}
-              colspan={24}
-              md={18}
-              xs={24}
-              style={{ paddingLeft: '40px' }}
-            >
-              {rssUrl && <ArticleList rssUrl={rssUrl} key={rssUrl} />}
-            </FlexboxGrid.Item>
-          </FlexboxGrid>
+          <MessageContext.Provider value={setMessage}>
+            <FlexboxGrid justify="space-around">
+              <FlexboxGrid.Item
+                componentClass={Col}
+                colspan={24}
+                md={6}
+                xs={24}
+              >
+                <RssContext.Provider value={[rssUrl, setRssUrl]}>
+                  <Sidebar />
+                </RssContext.Provider>
+              </FlexboxGrid.Item>
+              <FlexboxGrid.Item
+                componentClass={Col}
+                colspan={24}
+                md={18}
+                xs={24}
+                style={{ paddingLeft: '40px' }}
+              >
+                {rssUrl && <ArticleList rssUrl={rssUrl} />}
+              </FlexboxGrid.Item>
+            </FlexboxGrid>
+          </MessageContext.Provider>
         </Content>
         <Footer>
           <Foot />

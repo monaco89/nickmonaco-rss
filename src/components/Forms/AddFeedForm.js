@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Formik } from 'formik';
 import {
   Form,
@@ -8,12 +8,13 @@ import {
   HelpBlock,
   Button,
   ButtonToolbar,
-  Message,
 } from 'rsuite';
 import { useMutation } from '@apollo/client';
+import { MessageContext } from '../../utils/context';
 import ADD_FEED_MUTATION from '../../graphql/mutations/AddFeed';
 
 const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
+  const setMessage = useContext(MessageContext);
   const [addFeed] = useMutation(ADD_FEED_MUTATION);
 
   return (
@@ -35,7 +36,7 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
 
         return errors;
       }}
-      onSubmit={async ({ name, icon, rss }, { setSubmitting, setStatus }) => {
+      onSubmit={async ({ name, icon, rss }, { setSubmitting }) => {
         try {
           const { error } = await addFeed({
             variables: {
@@ -49,21 +50,21 @@ const AddFeedForm = ({ toggleAddFeedForm, refetch }) => {
 
           if (error) {
             setSubmitting(false);
-            setStatus(error.message);
+            setMessage({ type: 'error', message: error.message });
           } else {
             setSubmitting(false);
+            setMessage({ type: 'success', message: 'Feed as been added.' });
             toggleAddFeedForm(false);
             refetch();
           }
         } catch (err) {
           setSubmitting(false);
-          setStatus(err.message);
+          setMessage({ type: 'error', message: err.message });
         }
       }}
     >
-      {({ handleSubmit, handleBlur, isSubmitting, status, setFieldValue }) => (
+      {({ handleSubmit, handleBlur, isSubmitting, setFieldValue }) => (
         <Form onSubmit={handleSubmit} fluid>
-          {status && <Message type="error" description={status} />}
           <FormGroup>
             <ControlLabel>Name</ControlLabel>
             <Input

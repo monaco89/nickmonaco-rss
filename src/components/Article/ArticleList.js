@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useCallback } from 'react';
 import RSSParser from 'rss-parser';
 import ArticleItem from './ArticleItem';
 import Loading from '../Loading';
@@ -7,7 +7,7 @@ const ArticleList = ({ rssUrl }) => {
   const [feed, setFeed] = useState({ title: '', items: [] });
   const [loading, setLoading] = useState(true);
 
-  const rssData = async () => {
+  const rssData = useCallback(async () => {
     const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
     const parser = new RSSParser();
 
@@ -18,11 +18,12 @@ const ArticleList = ({ rssUrl }) => {
       // TODO Log error
       console.log(error);
     }
-  };
+  }, [rssUrl]);
+
   useEffect(() => {
     rssData();
     setLoading(false);
-  }, [loading]);
+  }, [rssData]);
 
   return (
     <div>

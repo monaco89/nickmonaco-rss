@@ -6,13 +6,15 @@ import Loading from '../Loading';
 import FeedsDropdown from './FeedsDropdown';
 import AddFormModal from './AddFeedFormModal';
 
-const Sidebar = ({ setRssUrl, rssUrl }) => {
+const Sidebar = () => {
   const [activeKey, setActiveKey] = useState('3');
   const [expanded, toggleExpand] = useState(true);
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
   const { loading, data, error, refetch } = useQuery(FEEDS_QUERY);
 
   if (loading) return <Loading />;
+
+  // if (error) setMessage({ type: "error", message: error.message});
 
   return (
     <div>
@@ -40,12 +42,7 @@ const Sidebar = ({ setRssUrl, rssUrl }) => {
       >
         <Sidenav.Body>
           <Nav>
-            <FeedsDropdown
-              setRssUrl={setRssUrl}
-              rssUrl={rssUrl}
-              feeds={data?.feeds}
-              refetch={refetch}
-            />
+            <FeedsDropdown feeds={data?.feeds} refetch={refetch} />
             <Dropdown
               eventKey="4"
               title="Podcasts"
