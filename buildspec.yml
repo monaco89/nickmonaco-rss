@@ -10,7 +10,7 @@ phases:
     commands:
       # - printenv > .env
       - yarn build
-      - CI=true yarn test
+      # - CI=true yarn test
   post_build:
     commands:
       - echo Synchronizing S3 bucket directory $S3_BUCKET ...
