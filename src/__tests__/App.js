@@ -1,7 +1,7 @@
 import React from 'react';
 import { render } from '@testing-library/react';
 import { MockedProvider } from '@apollo/client/testing';
-import FeedsDropdown from '../components/Navigation/FeedsDropdown';
+import FeedsDropdown from '../components/Sidebar/FeedsDropdown';
 import FEEDS_QUERY from '../graphql/queries/Feeds';
 
 describe('<App />', () => {
