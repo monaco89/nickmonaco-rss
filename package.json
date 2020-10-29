@@ -29,9 +29,9 @@
     "deploy": "react-scripts build && aws cloudfront create-invalidation --distribution-id $CLOUDFRONT_DISTRIBUTION --paths \"/*\"",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint .",
-    "prettify": "prettier --check '**/*.{js,json}'",
-    "prettify-fix": "prettier --write \"./pages/**/*.{js,scss,json}\"",
+    "lint": "eslint 'src/**/*.{js,jsx}' --fix-dry-run",
+    "prettify": "prettier --check './src/**/*.{js,jsx}'",
+    "prettify-fix": "prettier --write './src/**/*.{js,jsx}'",
     "precommit": "lint-staged"
   },
   "eslintConfig": {

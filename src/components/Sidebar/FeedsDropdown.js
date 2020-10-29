@@ -2,8 +2,10 @@ import React, { useContext } from 'react';
 import { Dropdown, Icon } from 'rsuite';
 import { RssContext } from '../../utils/context';
 import RemoveFeedButton from './RemoveFeedButton';
+import useSession from '../../utils/hooks/useSession';
 
 const FeedsDropdown = ({ feeds, refetch }) => {
+  const session = useSession();
   const [rssUrl, setRssUrl] = useContext(RssContext);
 
   return (
@@ -17,7 +19,10 @@ const FeedsDropdown = ({ feeds, refetch }) => {
           icon={<Icon icon={icon || 'newspaper-o'} />}
           active={rssUrl === rss}
         >
-          {name} <RemoveFeedButton id={id} refetch={refetch} />
+          {name}{' '}
+          {(session.me || session.sub) && (
+            <RemoveFeedButton id={id} refetch={refetch} />
+          )}
         </Dropdown.Item>
       ))}
     </Dropdown>
