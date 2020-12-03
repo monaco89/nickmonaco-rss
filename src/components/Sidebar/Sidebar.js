@@ -5,8 +5,10 @@ import FEEDS_QUERY from '../../graphql/queries/Feeds';
 import Loading from '../Loading';
 import FeedsDropdown from './FeedsDropdown';
 import AddFormModal from './AddFeedFormModal';
+import useSession from '../../utils/hooks/useSession';
 
 const Sidebar = () => {
+  const session = useSession();
   const [activeKey, setActiveKey] = useState('3');
   const [expanded, toggleExpand] = useState(true);
   const [showAddFeedForm, toggleAddFeedForm] = useState(false);
@@ -43,7 +45,7 @@ const Sidebar = () => {
               eventKey="1"
               icon={<Icon icon="plus" />}
               onClick={() => toggleAddFeedForm(true)}
-              disabled={!!error}
+              disabled={!!error || !session || (session && !session.me)}
             >
               Add Feed
             </Nav.Item>
