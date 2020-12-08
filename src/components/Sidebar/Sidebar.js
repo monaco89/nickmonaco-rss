@@ -45,7 +45,7 @@ const Sidebar = () => {
               eventKey="1"
               icon={<Icon icon="plus" />}
               onClick={() => toggleAddFeedForm(true)}
-              disabled={!!error || !session || (session && !session.me)}
+              disabled={!!error || !session?.me}
             >
               Add Feed
             </Nav.Item>

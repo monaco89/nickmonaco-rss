@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
-import { Navbar, Nav, Avatar, Dropdown } from 'rsuite';
+import { Navbar, Nav, Dropdown, Icon } from 'rsuite';
 import AuthSignIn from './AuthSignIn';
 import SignInDropdown from './SignInDropdown';
 import SignInModal from './SignInModal';
 import useSession from '../../utils/hooks/useSession';
-import pic from '../../images/pic2.jpg';
+// import pic from '../../images/pic2.jpg';
 
 const Header = () => {
   const session = useSession();
@@ -23,9 +23,7 @@ const Header = () => {
           <Nav pullRight>
             <Dropdown
               placement="bottomEnd"
-              title={
-                <Avatar circle src={pic} size="md" alt="personal avatar" />
-              }
+              title={<Icon icon="user-circle-o" size="2x" />}
             >
               {!session?.sub && (
                 <SignInDropdown session={session} toggleSignIn={toggleSignIn} />

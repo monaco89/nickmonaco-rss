@@ -20,7 +20,7 @@ const FeedsDropdown = ({ feeds, refetch }) => {
           active={rssUrl === rss}
         >
           {name}{' '}
-          {(session.me || session.sub) && (
+          {(session?.me || session?.sub) && (
             <RemoveFeedButton id={id} refetch={refetch} />
           )}
         </Dropdown.Item>
