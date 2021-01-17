@@ -54,7 +54,7 @@ const App = () => {
               />
             )}
           </Header>
-          <Content>
+          <Content style={{ paddingBottom: '20px' }}>
             <MessageContext.Provider value={setMessage}>
               <p>Welcome to my personal RSS feed.</p>
               <FlexboxGrid justify="center">
