@@ -14,7 +14,7 @@ import ArticleList from './components/Article/ArticleList';
 import Nav from './components/Navigation/Nav';
 import Foot from './components/Footer';
 import Metadata from './components/Metadata';
-import Sidebar from './components/Sidebar/Sidebar';
+import FeedsList from './components/FeedsList';
 
 import 'rsuite/dist/styles/rsuite-default.css';
 import './App.css';
@@ -42,45 +42,38 @@ const App = () => {
         siteDescription="Nick Monaco's personal rss feed"
       />
       <Container>
-        <Header>
-          <Nav />
-          {message.type && (
-            <Message
-              showIcon
-              type={message.type}
-              description={message.message}
-              closable
-            />
-          )}
-        </Header>
-        <Content>
-          <MessageContext.Provider value={setMessage}>
-            <FlexboxGrid justify="space-around">
-              <FlexboxGrid.Item
-                componentClass={Col}
-                colspan={24}
-                md={6}
-                xs={24}
-              >
-                <RssContext.Provider value={[rssUrl, setRssUrl]}>
-                  <Sidebar />
-                </RssContext.Provider>
-              </FlexboxGrid.Item>
-              <FlexboxGrid.Item
-                componentClass={Col}
-                colspan={24}
-                md={18}
-                xs={24}
-                style={{ paddingLeft: '40px' }}
-              >
-                {rssUrl && <ArticleList rssUrl={rssUrl} />}
-              </FlexboxGrid.Item>
-            </FlexboxGrid>
-          </MessageContext.Provider>
-        </Content>
-        <Footer>
-          <Foot />
-        </Footer>
+        <RssContext.Provider value={[rssUrl, setRssUrl]}>
+          <Header>
+            <Nav />
+            {message.type && (
+              <Message
+                showIcon
+                type={message.type}
+                description={message.message}
+                closable
+              />
+            )}
+          </Header>
+          <Content>
+            <MessageContext.Provider value={setMessage}>
+              <p>Welcome to my personal RSS feed.</p>
+              <FlexboxGrid justify="center">
+                <FlexboxGrid.Item
+                  componentClass={Col}
+                  colspan={24}
+                  md={12}
+                  xs={24}
+                  // style={{ paddingLeft: '40px' }}
+                >
+                  {rssUrl ? <ArticleList rssUrl={rssUrl} /> : <FeedsList />}
+                </FlexboxGrid.Item>
+              </FlexboxGrid>
+            </MessageContext.Provider>
+          </Content>
+          <Footer>
+            <Foot />
+          </Footer>
+        </RssContext.Provider>
       </Container>
     </>
   );

@@ -1,6 +1,10 @@
 import React from 'react';
-import { Loader } from 'rsuite';
+import { Loader, Nav } from 'rsuite';
 
-const Loading = () => <Loader content="loading..." center size="md" />;
+const Loading = () => (
+  <Nav.Item>
+    <Loader content="loading..." center size="md" />
+  </Nav.Item>
+);
 
 export default Loading;
