@@ -1,8 +1,8 @@
 import React, { useContext } from 'react';
 import { useQuery } from '@apollo/client';
+import { List, Icon } from 'rsuite';
 import FEEDS_QUERY from '../graphql/queries/Feeds';
 import Loading from './Loading';
-import { List, Icon } from 'rsuite';
 import { RssContext } from '../utils/context';
 import useSession from '../utils/hooks/useSession';
 import RemoveFeedButton from './RemoveFeedButton';
@@ -17,7 +17,7 @@ const FeedsList = () => {
   }
 
   return (
-    <List bordered hover>
+    <List bordered hover key={rssUrl}>
       {loading ? (
         <List.Item style={{ padding: '20px' }}>
           <Loading />

@@ -1,5 +1,5 @@
-import React from "react";
-import { Icon, Nav, Row, Col } from "rsuite";
+import React from 'react';
+import { Icon, Nav, Row, Col } from 'rsuite';
 
 const Footer = () => (
   <Row>
@@ -25,7 +25,6 @@ const Footer = () => (
         </Nav.Item>
       </Nav>
     </Col>
-    <Col md={20} xs={24}></Col>
   </Row>
 );
 

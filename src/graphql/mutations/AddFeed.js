@@ -1,4 +1,4 @@
-import gql from "graphql-tag";
+import gql from 'graphql-tag';
 
 const ADD_FEED = gql`
   mutation CreateFeed($input: CreateFeedInput!) {

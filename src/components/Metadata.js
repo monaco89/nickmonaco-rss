@@ -1,9 +1,9 @@
-import React from "react";
-import Helmet from "react-helmet";
+import React from 'react';
+import Helmet from 'react-helmet';
 
 const Metadata = ({
   title,
-  url = "https://www.rss.nickmonaco.me",
+  url = 'https://www.rss.nickmonaco.me',
   description,
   absoluteImageUrl,
   twitterSiteAccount,
@@ -30,7 +30,7 @@ const Metadata = ({
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={siteTitle} />
     <meta name="twitter:description" content={siteDescription} />
-    <meta property="og:url" content={"https://www.rss.nickmonaco.me"} />
+    <meta property="og:url" content="https://www.rss.nickmonaco.me" />
 
     <meta name="twitter:title" content={siteTitle} />
     <meta name="twitter:image" content={absoluteImageUrl} />

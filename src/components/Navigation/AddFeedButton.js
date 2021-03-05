@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import AddFormModal from './AddFeedFormModal';
 import { Nav, Icon } from 'rsuite';
+import AddFormModal from './AddFeedFormModal';
 import useSession from '../../utils/hooks/useSession';
 
 const AddFeedButton = ({ refetch, error }) => {
