@@ -1,37 +1,24 @@
-import React, { useEffect, useState, useCallback } from 'react';
-import RSSParser from 'rss-parser';
+import React from 'react';
+import { useQuery } from '@apollo/client';
+// import RSSParser from 'rss-parser';
 import ArticleItem from './ArticleItem';
 import Loading from '../Loading';
+import FETCH_FEED from '../../graphql/queries/FetchFeed';
 
 const ArticleList = ({ rssUrl }) => {
-  const [feed, setFeed] = useState({ title: '', items: [] });
-  const [loading, setLoading] = useState(true);
-
-  const rssData = useCallback(async () => {
-    const CORS_PROXY = 'https://cors-anywhere.herokuapp.com/';
-    const parser = new RSSParser();
-
-    try {
-      const rssFeed = await parser.parseURL(`${CORS_PROXY}${rssUrl}`);
-      setFeed(rssFeed);
-    } catch (error) {
-      // TODO Log error
-      console.log(error);
-    }
-  }, [rssUrl]);
-
-  useEffect(() => {
-    rssData();
-    setLoading(false);
-  }, [rssData]);
-
+  const { loading, data, error } = useQuery(FETCH_FEED, {
+    variables: { url: rssUrl },
+  });
+  // const [feed, setFeed] = useState({ title: '', items: [] });
+  console.log(data);
   return (
     <div>
-      <img src={feed.image?.url} alt={feed.title} />
-      <h2>{feed.title}</h2>
-      <h3>{feed.description}</h3>
+      <img src={data?.fetchFeed.image?.url} alt={data?.fetchFeed.title} />
+      <h2>{data?.fetchFeed.title}</h2>
+      <h3>{data?.fetchFeed.description}</h3>
+      <p>{error?.message}</p>
       {loading && <Loading />}
-      {feed.items.slice(0, 10).map((item) => (
+      {data?.fetchFeed.items?.slice(0, 10).map((item) => (
         <ArticleItem key={item.guid || item.id || item.title} item={item} />
       ))}
     </div>

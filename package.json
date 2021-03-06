@@ -20,7 +20,6 @@
     "react-ga": "^3.0.0",
     "react-helmet": "^6.1.0",
     "react-scripts": "4.0.3",
-    "rss-parser": "^3.8.0",
     "rsuite": "^4.7.5"
   },
   "scripts": {
