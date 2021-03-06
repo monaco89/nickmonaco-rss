@@ -1,6 +1,5 @@
 import React from 'react';
 import { useQuery } from '@apollo/client';
-// import RSSParser from 'rss-parser';
 import ArticleItem from './ArticleItem';
 import Loading from '../Loading';
 import FETCH_FEED from '../../graphql/queries/FetchFeed';
@@ -9,8 +8,7 @@ const ArticleList = ({ rssUrl }) => {
   const { loading, data, error } = useQuery(FETCH_FEED, {
     variables: { url: rssUrl },
   });
-  // const [feed, setFeed] = useState({ title: '', items: [] });
-  console.log(data);
+
   return (
     <div>
       <img src={data?.fetchFeed.image?.url} alt={data?.fetchFeed.title} />
