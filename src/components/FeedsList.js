@@ -17,27 +17,27 @@ const FeedsList = () => {
   }
 
   return (
-    <List bordered hover key={rssUrl}>
+    <>
       {loading ? (
-        <List.Item style={{ padding: '20px' }}>
-          <Loading />
-        </List.Item>
+        <Loading />
       ) : (
-        data.feeds?.map(({ rss, icon, name, id }, index) => (
-          <List.Item
-            key={name}
-            index={index}
-            style={{ padding: '20px', cursor: 'pointer' }}
-            onClick={() => setRssUrl(rss)}
-          >
-            <Icon icon={icon || 'newspaper-o'} /> {name}
-            {(session?.me || session?.sub) && (
-              <RemoveFeedButton id={id} refetch={refetch} />
-            )}
-          </List.Item>
-        ))
+        <List bordered hover key={rssUrl}>
+          {data.feeds?.map(({ rss, icon, name, id }, index) => (
+            <List.Item
+              key={name}
+              index={index}
+              style={{ padding: '20px', cursor: 'pointer' }}
+              onClick={() => setRssUrl(rss)}
+            >
+              <Icon icon={icon || 'newspaper-o'} /> {name}
+              {(session?.me || session?.sub) && (
+                <RemoveFeedButton id={id} refetch={refetch} />
+              )}
+            </List.Item>
+          ))}
+        </List>
       )}
-    </List>
+    </>
   );
 };
 

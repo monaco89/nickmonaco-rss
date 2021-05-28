@@ -1,7 +1,7 @@
 import gql from 'graphql-tag';
 
 const REMOVE_FEED = gql`
-  mutation CreateFeed($id: ID!) {
+  mutation RemoveFeed($id: ID!) {
     removeFeed(id: $id)
   }
 `;
