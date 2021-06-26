@@ -9,6 +9,15 @@ const ArticleList = ({ rssUrl }) => {
     variables: { url: rssUrl },
   });
 
+  if (loading) {
+    return <Loading />;
+  }
+
+  if (error) {
+    return `Error! ${error.message}`;
+  }
+
+  console.log('article', data);
   return (
     <div>
       <img src={data?.fetchFeed.image?.url} alt={data?.fetchFeed.title} />

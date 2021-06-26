@@ -7,6 +7,14 @@ const FEEDS = gql`
       name
       rss
       icon
+      bookmarks {
+        title
+        url
+        user {
+          id
+          name
+        }
+      }
     }
   }
 `;

@@ -12,14 +12,19 @@ const FeedsList = () => {
   const [rssUrl, setRssUrl] = useContext(RssContext);
   const { loading, data, error, refetch } = useQuery(FEEDS_QUERY);
 
-  if (error) {
-    return <p>{error.message}</p>;
+  if (loading) {
+    return <Loading />;
   }
 
+  if (error) {
+    return `Error! ${error.message}`;
+  }
+
+  console.log('feed', data);
   return (
     <>
-      {loading ? (
-        <Loading />
+      {!data.feeds ? (
+        'No feeds to show'
       ) : (
         <List bordered hover key={rssUrl}>
           {data.feeds?.map(({ rss, icon, name, id }, index) => (

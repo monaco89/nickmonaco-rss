@@ -17,6 +17,16 @@ h3 {
 body {
   padding: 15px;
   background-color: #f7f7f7;
+  margin: 0;
+  font-family: -apple-system, system-ui, BlinkMacSystemFont, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #f2f4f8;
+  color: rgb(38, 38, 39);
+  font-weight: normal;
+  word-wrap: break-word;
+  font-kerning: normal;
 }
 
 a:hover,

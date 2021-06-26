@@ -26,12 +26,10 @@ const Metadata = ({
       <meta name="twitter:creator" content={twitterCreatorAccount} />
     )}
     {canonicalLink && <link rel="canonical" href={canonicalLink} />}
-
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={siteTitle} />
     <meta name="twitter:description" content={siteDescription} />
     <meta property="og:url" content="https://www.rss.nickmonaco.me" />
-
     <meta name="twitter:title" content={siteTitle} />
     <meta name="twitter:image" content={absoluteImageUrl} />
     <meta property="og:type" content="website" />
