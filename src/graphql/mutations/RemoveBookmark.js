@@ -1,8 +1,8 @@
 import gql from 'graphql-tag';
 
 const REMOVE_BOOKMARK = gql`
-  mutation RemoveBookmark($id: ID!) {
-    removeBookmark(id: $id)
+  mutation RemoveBookmark($url: String!) {
+    removeBookmark(url: $url)
   }
 `;
 

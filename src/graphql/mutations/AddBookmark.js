@@ -2,9 +2,7 @@ import gql from 'graphql-tag';
 
 const ADD_BOOKMARK = gql`
   mutation CreateBookmark($input: CreateBookmarkInput!) {
-    createBookmark(input: $input) {
-      id
-    }
+    createBookmark(input: $input)
   }
 `;
 

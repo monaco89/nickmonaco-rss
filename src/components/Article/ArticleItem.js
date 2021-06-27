@@ -6,11 +6,14 @@ import ArticleListStyles from './ArticleList.module.css';
 
 const ArticleItem = ({ item }) => (
   <div className={ArticleListStyles.item}>
-    <a href={item.link} target="_blank" rel="noopener noreferrer">
+    <h2 href={item.link} target="_blank" rel="noopener noreferrer">
       <BookmarkButton item={item} />
-      <h2>{item.title}</h2>
-    </a>
-    <div style={{ marginBottom: '5px' }}>
+      <a href={item.link} target="_blank" rel="noopener noreferrer">
+        {item.title}
+      </a>
+    </h2>
+    <br />
+    <div style={{ marginBottom: '10px' }}>
       <TagGroup>
         {item.categories?.map((tag) => (
           <Tag key={tag}>{tag}</Tag>

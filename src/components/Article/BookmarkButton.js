@@ -5,8 +5,7 @@ import ADD_BOOKMARK from '../../graphql/mutations/AddBookmark';
 import REMOVE_BOOKMARK from '../../graphql/mutations/RemoveBookmark';
 
 function BookmarkButton({ item }) {
-  console.log('item', item);
-  const [bookmarked, toggleBookmark] = React.useState(item.bookmarked || false);
+  const [bookmarked, toggleBookmark] = React.useState(item.bookmarked);
   const [mutate] = useMutation(bookmarked ? REMOVE_BOOKMARK : ADD_BOOKMARK);
 
   return (
@@ -15,21 +14,23 @@ function BookmarkButton({ item }) {
       color="red"
       appearance="subtle"
       size="xs"
-      icon={bookmarked ? <Icon icon="bookmark-o" /> : <Icon icon="bookmark" />}
-      onClick={() => {
-        toggleBookmark(!bookmarked);
-        if (!bookmarked) {
-          mutate({
+      icon={bookmarked ? <Icon icon="bookmark" /> : <Icon icon="bookmark-o" />}
+      onClick={async () => {
+        if (bookmarked) {
+          await mutate({ variables: { url: item.link } });
+        } else {
+          await mutate({
             variables: {
-              title: item.title,
-              content: item.content,
-              url: item.url,
-              pubDate: item.pubDate,
+              input: {
+                title: item.title,
+                content: item.content,
+                url: item.link,
+                pubDate: `${new Date(item.pubDate).getTime()}`,
+              },
             },
           });
-        } else {
-          mutate({ variables: { id: item.id } });
         }
+        toggleBookmark(!bookmarked);
       }}
     />
   );

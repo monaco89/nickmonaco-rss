@@ -17,14 +17,16 @@ const ArticleList = ({ rssUrl }) => {
     return `Error! ${error.message}`;
   }
 
-  console.log('article', data);
   return (
     <div>
-      <img src={data?.fetchFeed.image?.url} alt={data?.fetchFeed.title} />
+      {data?.fetchFeed.image?.url && (
+        <img src={data.fetchFeed.image.url} alt={data?.fetchFeed.title} />
+      )}
       <h2>{data?.fetchFeed.title}</h2>
       <h3>{data?.fetchFeed.description}</h3>
       <p>{error?.message}</p>
       {loading && <Loading />}
+      <hr />
       {data?.fetchFeed.items?.slice(0, 10).map((item) => (
         <ArticleItem key={item.guid || item.id || item.title} item={item} />
       ))}

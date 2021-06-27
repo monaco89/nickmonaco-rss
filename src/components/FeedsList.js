@@ -20,7 +20,6 @@ const FeedsList = () => {
     return `Error! ${error.message}`;
   }
 
-  console.log('feed', data);
   return (
     <>
       {!data.feeds ? (

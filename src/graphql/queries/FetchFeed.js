@@ -15,6 +15,7 @@ const FETCH_FEED = gql`
         contentSnippet
         guid
         categories
+        bookmarked
       }
     }
   }
